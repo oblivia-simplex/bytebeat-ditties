@@ -1,0 +1,17 @@
+#! /usr/bin/env bash
+
+prog=$1
+if [ -z "$prog" ]; then
+  echo "Usage: $0 <source>"
+  exit 1
+fi
+
+p=`basename $prog`
+bin="${p%.*}"
+raw=${bin}.raw
+wav=${bin}.wav
+flac=${bin}.flac
+
+gcc $prog -o $bin || exit 1
+
+./$bin | tee >(aplay) >(xxd -g1 1>&2 ) > /dev/null
