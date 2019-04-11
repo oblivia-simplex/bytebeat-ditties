@@ -14,4 +14,4 @@ flac=${bin}.flac
 
 gcc $prog -o $bin || exit 1
 
-./$bin | tee >(aplay) >(xxd -g1 1>&2 ) > /dev/null
+./$bin | tee >(play -r 8000 -c1 -b8 -t u8 -G - &> /dev/null) >(xxd -g1 1>&2 ) > /dev/null
