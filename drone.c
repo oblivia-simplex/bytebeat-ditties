@@ -8,7 +8,7 @@ void main() {
   int rev = 0;
   for (t=0;;t++) {
     putchar(
-        0xFA
+        0xFF
         & (
           t 
           & t >> 6
